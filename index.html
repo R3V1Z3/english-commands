@@ -1,0 +1,40 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>English Commands</title>
+  <script src="https://unpkg.com/compromise@latest/builds/compromise.min.js"></script>
+
+</head>
+
+<body>
+  <form>
+    Command:
+    <br>
+    <input type="text" id="command" value="take out the trash">
+    <br>
+    <br>
+    Result:
+    <span id="result">Message</span>
+    <br>
+  </form>
+
+  <script>
+    const command = document.querySelector('#command');
+    const result = document.querySelector('#result');
+    spit();
+
+    command.addEventListener( "input", spit );
+
+    function spit() {
+      let doc = nlp(command.value);
+      let str = doc.sentences().out('text');
+      result.innerHTML = str;
+    }
+
+  </script>
+
+</body>
+</html>
