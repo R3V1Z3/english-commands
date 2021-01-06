@@ -10,7 +10,8 @@
     body {
       height: 100vh;
       margin: 0;
-      font-size: 30px;
+      font-size: 1.2em;
+      font-family: monospace;
     }
     section {
       height: 100%;
@@ -24,13 +25,18 @@
       background: #f5f5f5;
       border-radius: 10px;
       padding: 1em;
-      width: 600px;
-      height: 400px;
+      width: 800px;
+      height: 600px;
     }
     form input {
+      font-family: monospace;
       border: 2px solid #f0f0f0;
-      font-size: 30px;
+      font-size: 1.4em;
       border-radius: 5px;
+      width: 98%;
+    }
+    em {
+      color: #999;
     }
   </style>
 
@@ -60,10 +66,33 @@
       let output = n;
       let doc = nlp(command.value);
       let str = doc.sentences().out('text');
-      output += 'people: ' + doc.people().out('text') + n;
-      output += 'nouns: ' + doc.nouns().out('text') + n;
-      output += 'verbs: ' + doc.verbs().out('text') + n;
+      output += em('topics') + doc.topics().out('text') + n;
+      output += em('nouns') + doc.nouns().out('text') + n;
+      output += em('people') + doc.people().out('text') + n;
+      output += em('places') + doc.places().out('text') + n;
+      output += em('hyphenated') + doc.hyphenated().out('text') + n;
+      output += em('urls') + doc.urls().out('text') + n;
+      output += em('phone numbers') + doc.phoneNumbers().out('text') + n;
+      output += em('emails') + doc.emails().out('text') + n;
+      output += em('emoticons') + doc.emoticons().out('text') + n;
+      output += em('emojis') + doc.emojis().out('text') + n;
+      output += em('@mentions') + doc.atMentions().out('text') + n;
+      output += em('acronyms') + doc.acronyms().out('text') + n;
+      output += em('organizations') + doc.organizations().out('text') + n;
+      output += em('pronouns') + doc.pronouns().out('text') + n;
+      output += em('verbs') + doc.verbs().out('text') + n;
+      output += em('adverbs') + doc.adverbs().out('text') + n;
+      output += em('conjunctions') + doc.conjunctions().out('text') + n;
+      output += em('prepositions') + doc.prepositions().out('text') + n;
+      output += em('contractions') + doc.contractions().out('text') + n;
+      output += em('abbreviations') + doc.abbreviations().out('text') + n;
+      output += em('parentheses') + doc.parentheses().out('text') + n;
+      output += em('possessives') + doc.possessives().out('text') + n;
       result.innerHTML = output;
+    }
+
+    function em(text) {
+      return `<em>${text}: </em>`;
     }
 
   </script>
